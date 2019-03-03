@@ -1,0 +1,10 @@
+{
+  "name": "astar.action-grid",
+  "displayName": "A* Action Grid",
+  "version": "0.1.0",
+  "unity": "2018.3",
+  "description": "A* action grid unity3d package",
+  "dependencies": {
+    "astar": "https://github.com/k0dep/astar.git"
+  }
+}
