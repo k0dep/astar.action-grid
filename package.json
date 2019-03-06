@@ -1,7 +1,7 @@
 {
   "name": "astar.action-grid",
   "displayName": "A* Action Grid",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "unity": "2018.3",
   "description": "A* action grid unity3d package",
   "dependencies": {

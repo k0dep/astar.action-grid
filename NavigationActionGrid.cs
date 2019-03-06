@@ -33,7 +33,27 @@ namespace AStar.ActionGrid
         
         [SerializeField]
         private float _Height;
-        
+                
+        /// <summary>
+        ///     Hitted layers by raycast when update transtions
+        /// </summary>
+        public LayerMask RaycastLayers;
+
+        /// <summary>
+        ///     if true, transition will update auto at start event
+        /// </summary>
+        public bool RefreshOnStart;
+
+        public void Start()
+        {
+            if (!RefreshOnStart)
+            {
+                return;
+            }
+            
+            RefreshTransitions();
+        }
+
         /// <summary>
         ///     Refresh transitions for current graph configuration in plane 
         /// </summary>
@@ -56,12 +76,13 @@ namespace AStar.ActionGrid
                         var distance = Vector3.Distance(neighbor, position);
 
                         var transitionCost = WalkableCost;
-                        
-                        if (Physics.Raycast(position, dir, distance) || Physics.Raycast(neighbor, -dir, distance))
+
+                        if (Physics.Raycast(position, dir, distance, RaycastLayers.value) ||
+                            Physics.Raycast(neighbor, -dir, distance, RaycastLayers.value))
                         {
                             transitionCost = NotWalkableCost;
                         }
-                        
+
                         Graph.SetTransition(point, i, transitionCost);
                     }
                 }
@@ -83,8 +104,11 @@ namespace AStar.ActionGrid
             {
                 return;
             }
-            
-            RefreshTransitions();
+
+            if (!Application.isPlaying)
+            {
+                RefreshTransitions();
+            }
             
             for (int x = 0; x < Graph.Width; x++)
             {
