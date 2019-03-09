@@ -5,8 +5,7 @@
  ```json
 {
   "dependencies": {
-    "astar.action-grid": "https://github.com/k0dep/astar.action-grid.git#0.1.0",
-    ...
+    "astar.action-grid": "https://github.com/k0dep/astar.action-grid.git#0.1.0"
   }
 }
 ```
